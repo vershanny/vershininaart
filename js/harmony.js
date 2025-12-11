@@ -32,6 +32,7 @@ const imageEl = document.querySelector("[data-artwork-image]");
 const navPrev = document.querySelector(".nav--prev");
 const navNext = document.querySelector(".nav--next");
 const stage = document.querySelector(".series__stage");
+const dotsContainer = document.querySelector("[data-slider-dots]");
 const infoFields = {
   title: document.querySelector('[data-meta="title"]'),
   year: document.querySelector('[data-meta="year"]'),
@@ -60,6 +61,36 @@ function updateView(index) {
   Object.entries(infoFields).forEach(([key, element]) => {
     if (!element) return;
     element.textContent = current[key] || "";
+  });
+
+  updateDots(index);
+}
+
+function updateDots(index) {
+  if (!dotsContainer) return;
+  const dots = dotsContainer.querySelectorAll(".slider-dot");
+  dots.forEach((dot, i) => {
+    if (i === index) {
+      dot.classList.add("active");
+    } else {
+      dot.classList.remove("active");
+    }
+  });
+}
+
+function initDots() {
+  if (!dotsContainer || works.length <= 1) return;
+  dotsContainer.innerHTML = "";
+  works.forEach((_, index) => {
+    const dot = document.createElement("button");
+    dot.className = "slider-dot";
+    if (index === 0) dot.classList.add("active");
+    dot.setAttribute("aria-label", `Перейти к изображению ${index + 1}`);
+    dot.addEventListener("click", () => {
+      activeIndex = index;
+      updateView(activeIndex);
+    });
+    dotsContainer.appendChild(dot);
   });
 }
 
@@ -139,5 +170,6 @@ function attachSwipe(surface) {
 
 attachSwipe(imageEl);
 
+initDots();
 updateView(activeIndex);
 
