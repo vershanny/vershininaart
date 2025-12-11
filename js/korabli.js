@@ -191,7 +191,7 @@ function attachSwipe(surface) {
   );
 }
 
-attachSwipe(stage || imageEl);
+attachSwipe(imageEl);
 
 updateView(activeIndex);
 

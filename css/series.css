@@ -280,18 +280,18 @@ body[data-theme="light"] .series__info .info__note {
   .series__stage {
     display: flex;
     justify-content: center;
-    padding: 0;
+    padding: 0 clamp(12px, 4vw, 20px);
     width: 100%;
   }
 
   .nav--prev {
-    left: 0;
-    transform: translate(-140%, -50%);
+    left: clamp(6px, 3vw, 16px);
+    transform: translateY(-50%);
   }
 
   .nav--next {
-    right: 0;
-    transform: translate(140%, -50%);
+    right: clamp(6px, 3vw, 16px);
+    transform: translateY(-50%);
   }
 }
 
@@ -301,13 +301,13 @@ body[data-theme="light"] .series__info .info__note {
   }
 
   .nav--prev {
-    left: 0;
-    transform: translate(-140%, -50%);
+    left: clamp(6px, 4vw, 14px);
+    transform: translateY(-50%);
   }
 
   .nav--next {
-    right: 0;
-    transform: translate(140%, -50%);
+    right: clamp(6px, 4vw, 14px);
+    transform: translateY(-50%);
   }
 }
 
