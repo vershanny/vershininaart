@@ -3,6 +3,7 @@
 
 const nav = document.querySelector(".site-nav");
 const navToggle = document.querySelector(".site-nav__toggle");
+const backToTop = document.querySelector(".back-to-top");
 
 function closeNav() {
   if (!nav || !navToggle) return;
@@ -57,4 +58,22 @@ if (nav && navToggle) {
   };
 
   mq.addEventListener("change", handleMediaChange);
+
+// Back to top
+if (backToTop) {
+  const toggleBackToTop = () => {
+    if (window.scrollY > 200) {
+      backToTop.classList.add("is-visible");
+    } else {
+      backToTop.classList.remove("is-visible");
+    }
+  };
+
+  toggleBackToTop();
+  window.addEventListener("scroll", toggleBackToTop, { passive: true });
+
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
 }
