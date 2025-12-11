@@ -22,6 +22,7 @@ const works = [
 const imageEl = document.querySelector("[data-artwork-image]");
 const navPrev = document.querySelector(".nav--prev");
 const navNext = document.querySelector(".nav--next");
+const stage = document.querySelector(".series__stage");
 const infoFields = {
   title: document.querySelector('[data-meta="title"]'),
   year: document.querySelector('[data-meta="year"]'),
@@ -65,5 +66,33 @@ function showPrev() {
 
 navNext?.addEventListener("click", showNext);
 navPrev?.addEventListener("click", showPrev);
+
+function attachSwipe(surface) {
+  if (!surface || works.length <= 1) return;
+  let startX = 0;
+  surface.addEventListener(
+    "touchstart",
+    (event) => {
+      startX = event.touches[0]?.clientX ?? 0;
+    },
+    { passive: true }
+  );
+  surface.addEventListener(
+    "touchend",
+    (event) => {
+      const endX = event.changedTouches[0]?.clientX ?? 0;
+      const deltaX = endX - startX;
+      if (Math.abs(deltaX) < 40) return;
+      if (deltaX < 0) {
+        showNext();
+      } else {
+        showPrev();
+      }
+    },
+    { passive: true }
+  );
+}
+
+attachSwipe(stage || imageEl);
 
 updateView(activeIndex);

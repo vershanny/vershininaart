@@ -277,12 +277,21 @@ body[data-theme="light"] .series__info .info__note {
     align-self: stretch;
   }
 
+  .series__stage {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    width: 100%;
+  }
+
   .nav--prev {
-    left: -40px;
+    left: 0;
+    transform: translate(-140%, -50%);
   }
 
   .nav--next {
-    right: -40px;
+    right: 0;
+    transform: translate(140%, -50%);
   }
 }
 
