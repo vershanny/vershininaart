@@ -301,11 +301,13 @@ body[data-theme="light"] .series__info .info__note {
   }
 
   .nav--prev {
-    left: -32px;
+    left: 0;
+    transform: translate(-140%, -50%);
   }
 
   .nav--next {
-    right: -32px;
+    right: 0;
+    transform: translate(140%, -50%);
   }
 }
 

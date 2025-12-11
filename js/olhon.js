@@ -88,24 +88,59 @@ navPrev?.addEventListener("click", showPrev);
 function attachSwipe(surface) {
   if (!surface || works.length <= 1) return;
   let startX = 0;
+  let startY = 0;
+  let isSwiping = false;
+  
   surface.addEventListener(
     "touchstart",
     (event) => {
       startX = event.touches[0]?.clientX ?? 0;
+      startY = event.touches[0]?.clientY ?? 0;
+      isSwiping = false;
     },
     { passive: true }
   );
+  
+  surface.addEventListener(
+    "touchmove",
+    (event) => {
+      if (!startX) return;
+      const currentX = event.touches[0]?.clientX ?? 0;
+      const currentY = event.touches[0]?.clientY ?? 0;
+      const deltaX = Math.abs(currentX - startX);
+      const deltaY = Math.abs(currentY - startY);
+      
+      // Если горизонтальное движение больше вертикального, это свайп
+      if (deltaX > deltaY && deltaX > 10) {
+        isSwiping = true;
+      }
+    },
+    { passive: true }
+  );
+  
   surface.addEventListener(
     "touchend",
     (event) => {
+      if (!startX || !isSwiping) {
+        startX = 0;
+        startY = 0;
+        return;
+      }
+      
       const endX = event.changedTouches[0]?.clientX ?? 0;
       const deltaX = endX - startX;
-      if (Math.abs(deltaX) < 40) return;
-      if (deltaX < 0) {
-        showNext();
-      } else {
-        showPrev();
+      
+      if (Math.abs(deltaX) >= 40) {
+        if (deltaX < 0) {
+          showNext();
+        } else {
+          showPrev();
+        }
       }
+      
+      startX = 0;
+      startY = 0;
+      isSwiping = false;
     },
     { passive: true }
   );
