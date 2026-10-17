@@ -4,8 +4,11 @@ collection: graphic-print
 description: Art series
 draft: false
 weight: 1
+featured: false
+square: false
 works:
-  - title: Рыбаки
+  - id: rybaki-work-1
+    title: Рыбаки
     image:
       src: rybaki-work-1.png
       alt: Графическая работа Рыбаки — лист 1
@@ -13,7 +16,8 @@ works:
     technique: Линогравюра
     size: 40 × 60
     sheet: 1/2
-  - title: Рыбаки
+  - id: rybaki-work-2
+    title: Рыбаки
     image:
       src: rybaki-work-2.png
       alt: Графическая работа Рыбаки — лист 2
@@ -24,4 +28,3 @@ works:
 ---
 
 # Рыбаки
-

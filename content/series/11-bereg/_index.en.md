@@ -4,8 +4,11 @@ collection: graphic-print
 description: Art series
 draft: false
 weight: 11
+featured: false
+square: true
 works:
-  - title: Shore
+  - id: bereg-1
+    title: Shore
     image:
       src: bereg-1.png
       alt: Shore
@@ -13,7 +16,8 @@ works:
     technique: Etching
     size: 20 × 20
     sheet: 1/2
-  - title: Cliff
+  - id: bereg-2
+    title: Cliff
     image:
       src: bereg-2.png
       alt: Cliff

@@ -4,9 +4,11 @@ collection: graphic-print
 description: Art series
 draft: false
 weight: 5
-cardclass: " card--wide"
+featured: true
+square: false
 works:
-  - title: В потоке
+  - id: vpotoke-work1
+    title: В потоке
     image:
       src: vpotoke-work1.png
       alt: Графическая работа В потоке

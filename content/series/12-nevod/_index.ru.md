@@ -4,8 +4,11 @@ collection: paintings
 description: Art series
 draft: false
 weight: 10
+featured: false
+square: true
 works:
-  - title: Невод
+  - id: nevod-work-1
+    title: Невод
     image:
       src: nevod-work-1.jpg
       alt: Невод — темпера

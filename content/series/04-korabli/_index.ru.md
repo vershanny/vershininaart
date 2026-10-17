@@ -4,8 +4,11 @@ collection: graphic-print
 description: Art series
 draft: false
 weight: 4
+featured: false
+square: false
 works:
-  - title: Переправа
+  - id: korabli-work-1
+    title: Переправа
     image:
       src: korabli-work-1.png
       alt: Графическая работа Заброшенные корабли — лист 1
@@ -13,7 +16,8 @@ works:
     technique: Графика
     size: 40 × 60
     sheet: 1/9
-  - title: Сети
+  - id: korabli-work-2
+    title: Сети
     image:
       src: korabli-work-2.png
       alt: Графическая работа Заброшенные корабли — лист 2
@@ -21,7 +25,8 @@ works:
     technique: Графика
     size: 40 × 60
     sheet: 2/9
-  - title: Поле
+  - id: korabli-work-3
+    title: Поле
     image:
       src: korabli-work-3.png
       alt: Графическая работа Заброшенные корабли — лист 3
@@ -29,7 +34,8 @@ works:
     technique: Графика
     size: 40 × 60
     sheet: 3/9
-  - title: Лодка
+  - id: korabli-work-4
+    title: Лодка
     image:
       src: korabli-work-4.png
       alt: Графическая работа Заброшенные корабли — лист 4
@@ -37,7 +43,8 @@ works:
     technique: Графика
     size: 40 × 60
     sheet: 4/9
-  - title: Остов корабля
+  - id: korabli-work-5
+    title: Остов корабля
     image:
       src: korabli-work-5.png
       alt: Графическая работа Заброшенные корабли — лист 5
@@ -45,7 +52,8 @@ works:
     technique: Графика
     size: 40 × 60
     sheet: 5/9
-  - title: Волны
+  - id: korabli-work-6
+    title: Волны
     image:
       src: korabli-work-6.png
       alt: Графическая работа Заброшенные корабли — лист 6
@@ -53,7 +61,8 @@ works:
     technique: Графика
     size: 40 × 60
     sheet: 6/9
-  - title: Лодка
+  - id: korabli-work-7
+    title: Лодка
     image:
       src: korabli-work-7.png
       alt: Графическая работа Заброшенные корабли — лист 7
@@ -61,7 +70,8 @@ works:
     technique: Графика
     size: 40 × 60
     sheet: 7/9
-  - title: Скелет
+  - id: korabli-work-8
+    title: Скелет
     image:
       src: korabli-work-8.png
       alt: Графическая работа Заброшенные корабли — лист 8
@@ -69,7 +79,8 @@ works:
     technique: Графика
     size: 40 × 60
     sheet: 8/9
-  - title: Заброшенные корабли
+  - id: korabli-work-9
+    title: Заброшенные корабли
     image:
       src: korabli-work-9.png
       alt: Графическая работа Заброшенные корабли — лист 9
@@ -80,4 +91,3 @@ works:
 ---
 
 # Заброшенные корабли
-

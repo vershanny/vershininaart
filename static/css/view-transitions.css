@@ -1,0 +1,116 @@
+@view-transition {
+    navigation: auto;
+}
+
+:root {
+    --transition-artwork-duration: 330ms;
+    --transition-slide-duration: 300ms;
+    --transition-easing: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+::view-transition-group(*) {
+    animation-timing-function: var(--transition-easing);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 180ms;
+}
+
+::view-transition-group(artwork) {
+    animation-duration: var(--transition-artwork-duration);
+}
+
+::view-transition-old(artwork),
+::view-transition-new(artwork) {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    mix-blend-mode: normal;
+}
+
+html[data-transition^="info-"]::view-transition-old(root),
+html[data-transition^="info-"]::view-transition-new(root) {
+    animation-duration: var(--transition-slide-duration);
+    animation-timing-function: var(--transition-easing);
+    animation-fill-mode: both;
+    mix-blend-mode: normal;
+}
+
+html[data-transition="info-open"]::view-transition-old(root) {
+    animation-name: gallery-recede;
+    z-index: 1;
+}
+html[data-transition="info-open"]::view-transition-new(root) {
+    animation-name: page-enter-right;
+    z-index: 2;
+}
+html[data-transition="info-close"]::view-transition-old(root) {
+    animation-name: page-exit-right;
+    z-index: 2;
+}
+html[data-transition="info-close"]::view-transition-new(root) {
+    animation-name: gallery-return;
+    z-index: 1;
+}
+
+@keyframes page-enter-right { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@keyframes page-exit-right { from { transform: translateX(0); } to { transform: translateX(100%); } }
+@keyframes gallery-recede { from { transform: translateX(0); opacity: 1; } to { transform: translateX(-6%); opacity: 0.65; } }
+@keyframes gallery-return { from { transform: translateX(-6%); opacity: 0.65; } to { transform: translateX(0); opacity: 1; } }
+
+html[data-transition^="viewer-"]::view-transition-old(root),
+html[data-transition^="viewer-"]::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+html[data-transition^="viewer-"]::view-transition-group(viewer-panel) { z-index: 2; }
+html[data-transition^="viewer-"]::view-transition-group(artwork) { z-index: 3; }
+::view-transition-old(viewer-panel),
+::view-transition-new(viewer-panel) {
+    animation-duration: var(--transition-artwork-duration);
+}
+
+html[data-transition^="work-"]::view-transition-old(root),
+html[data-transition^="work-"]::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+::view-transition-group(work-image),
+::view-transition-group(work-info) { animation-duration: var(--transition-slide-duration); }
+::view-transition-image-pair(work-image),
+::view-transition-image-pair(work-info) { overflow: clip; }
+::view-transition-old(work-image), ::view-transition-new(work-image),
+::view-transition-old(work-info), ::view-transition-new(work-info) {
+    animation-duration: var(--transition-slide-duration);
+    animation-timing-function: var(--transition-easing);
+    animation-fill-mode: both;
+    mix-blend-mode: normal;
+}
+html[data-transition="work-next"]::view-transition-old(work-image),
+html[data-transition="work-next"]::view-transition-old(work-info) { animation-name: work-exit-left; }
+html[data-transition="work-next"]::view-transition-new(work-image),
+html[data-transition="work-next"]::view-transition-new(work-info) { animation-name: work-enter-right; }
+html[data-transition="work-prev"]::view-transition-old(work-image),
+html[data-transition="work-prev"]::view-transition-old(work-info) { animation-name: work-exit-right; }
+html[data-transition="work-prev"]::view-transition-new(work-image),
+html[data-transition="work-prev"]::view-transition-new(work-info) { animation-name: work-enter-left; }
+
+@keyframes work-enter-right { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes work-enter-left { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes work-exit-left { from { transform: translateX(0); opacity: 1; } to { transform: translateX(-100%); opacity: 0; } }
+@keyframes work-exit-right { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+    @view-transition { navigation: none; }
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+        animation: none !important;
+    }
+    .artwork, .site-header, body { animation: none !important; transition: none !important; }
+}
+
+/* Keep the current page interactive while preparing only the chosen image. */
+html[data-navigation-loading],
+html[data-navigation-loading] a { cursor: progress; }

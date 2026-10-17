@@ -63,6 +63,28 @@ vershininaart/
 
 ## How Site Generation Works
 
+### Artwork pages (Hugo Extended 0.159.2+)
+
+Edit only the series `_index.ru.md` and `_index.en.md` files and images. Every item
+in `works` requires a stable `id` (lowercase Latin letters, digits and single
+hyphens), unique within the series and identical in both languages. Keep IDs
+unchanged when renaming works. The first work uses the series URL; subsequent
+works use `/series/<series>/<id>/` (with `/en/` for English).
+
+`content/series/_content.gotmpl` creates these pages automatically. Do not create
+individual Markdown files with `work_id` or `slug`. The resource mount in
+`hugo.yaml` lets the adapter notice changes during `hugo server`.
+
+Gallery layout uses two optional series booleans, identical in both languages:
+`featured` (default false) enlarges the cover and `square` (default true) crops
+it to a square. Do not use `cardclass` or `card-class`. A featured square spans
+2×2 cells. A featured uncropped image uses one column for portrait, two columns
+for landscape or square sources, and its natural image height. Portraits with
+height / width > 1.5 span two rows; other portraits grow a single row.
+Unfeatured images occupy 1×1; uncropped images fit inside that area, align to
+the top, and their captions follow the image without empty space in between.
+One-column layouts disable enlargement. Square crops stay centered.
+
 1. **Hugo reads the configuration** (`hugo.yaml`)
    - Defines two languages: Russian (default) and English
    - Russian pages: `/`, `/about/`, `/series/`
@@ -370,9 +392,11 @@ collection: graphic-print  # graphic-print, paintings, or sculpture
 description: SEO description
 draft: false  # false = published, true = hidden
 weight: 1  # Sorting order (1, 2, 3...)
-cardclass: ""  # Optional: " card--compact" or other CSS classes
+featured: false
+square: true
 works:
-  - title: Work title
+  - id: work-1
+    title: Work title
     image:
       src: image-file.jpg
       alt: SEO and accessibility description
@@ -380,7 +404,8 @@ works:
     technique: Technique name
     size: 50 × 70  # Important: × symbol (not x!)
     sheet: 1/2  # Optional for multi-sheet works
-  - title: Second work
+  - id: work-2
+    title: Second work
     image:
       src: another-file.jpg
       alt: Second description
@@ -639,16 +664,19 @@ collection: paintings
 description: Живописная серия "Берег моря"
 draft: false
 weight: 12
-cardclass: ""
+featured: false
+square: true
 works:
-  - title: Волна на закате
+  - id: wave-at-sunset
+    title: Волна на закате
     image:
       src: wave-sunset.jpg
       alt: Живописная работа "Волна на закате" — темпера на холсте
     year: 2024
     technique: Темпера на холсте
     size: 70 × 90
-  - title: Прибой
+  - id: surf
+    title: Прибой
     image:
       src: surf.jpg
       alt: Живописная работа "Прибой" — акрил на холсте
@@ -664,16 +692,19 @@ collection: paintings
 description: Painting series "Sea Coast"
 draft: false
 weight: 12
-cardclass: ""
+featured: false
+square: true
 works:
-  - title: Wave at Sunset
+  - id: wave-at-sunset
+    title: Wave at Sunset
     image:
       src: wave-sunset.jpg
       alt: Painting work "Wave at Sunset" — tempera on canvas
     year: 2024
     technique: Tempera on canvas
     size: 70 × 90
-  - title: Surf
+  - id: surf
+    title: Surf
     image:
       src: surf.jpg
       alt: Painting work "Surf" — acrylic on canvas

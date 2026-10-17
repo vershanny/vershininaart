@@ -4,8 +4,11 @@ collection: sculpture
 description: Art series
 draft: false
 weight: 10
+featured: false
+square: true
 works:
-  - title: Скелет кита
+  - id: skelet-work-1
+    title: Скелет кита
     image:
       src: skelet-work-1.png
       alt: Скульптура Скелет кита — вид 1
@@ -13,7 +16,8 @@ works:
     technique: Гипс
     size: 48 × 12 × 13
     sheet: 1/2
-  - title: Скелет кита
+  - id: skelet-work-2
+    title: Скелет кита
     image:
       src: skelet-work-2.png
       alt: Скульптура Скелет кита — вид 2
